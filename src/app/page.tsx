@@ -3,41 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-/* ─── Phone mockup ─── */
-function PhoneFrame({
-  children,
-  label,
-}: {
-  children: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <div className="flex flex-col items-center gap-3 flex-shrink-0">
-      <div
-        className="w-[240px] rounded-[20px] border border-[#252525] bg-[#181818] p-4"
-        style={{ scrollSnapAlign: "center" }}
-      >
-        {children}
-      </div>
-      <span className="text-sm text-[#999]">{label}</span>
-    </div>
-  );
-}
-
-/* ─── Bars inside phone frames ─── */
-function UiBars({ count = 4 }: { count?: number }) {
-  return (
-    <div className="flex flex-col gap-5 pt-5">
-      {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className="h-2 rounded bg-[#252525]"
-          style={{ width: i === 0 ? "70%" : i === count - 1 ? "55%" : "80%" }}
-        />
-      ))}
-    </div>
-  );
-}
+/* ─── Screenshots now use real images ─── */
 
 /* ─── Feature card ─── */
 function FeatureCard({
@@ -166,10 +132,13 @@ export default function Home() {
           </div>
 
           {/* right: phone mockup */}
-          <div className="w-[240px] rounded-[20px] border border-[#252525] bg-[#181818] p-4">
-            <div className="mt-5 h-2 w-4/5 rounded bg-[#252525]" />
-            <div className="mt-5 h-2 w-4/5 rounded bg-[#252525]" />
-            <div className="mt-5 h-2 w-4/5 rounded bg-[#252525]" />
+          <div className="overflow-hidden rounded-[20px] border border-[#252525] bg-[#181818]">
+            <img
+              src="/screenshots/main.png"
+              alt="Glow Manager main screen"
+              className="block"
+              style={{ width: 240, height: "auto", maxHeight: 480, objectFit: "cover" }}
+            />
           </div>
         </div>
       </section>
@@ -189,13 +158,32 @@ export default function Home() {
           className="mx-auto mt-12 flex max-w-[1120px] gap-6 overflow-x-auto px-5 pb-4"
           style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
         >
-          {["Main", "Profile", "Appointments", "Client", "Portfolio", "Income", "Settings"].map(
-            (label) => (
-              <PhoneFrame key={label} label={label}>
-                <UiBars count={label === "Appointments" ? 4 : 3} />
-              </PhoneFrame>
-            )
-          )}
+          {[
+            { label: "Main", src: "/screenshots/main.png" },
+            { label: "Profile", src: "/screenshots/profile.png" },
+            { label: "Appointments", src: "/screenshots/appointments.png" },
+            { label: "Client", src: "/screenshots/client.png" },
+            { label: "Portfolio", src: "/screenshots/portfolio.png" },
+            { label: "Income", src: "/screenshots/income.png" },
+            { label: "Settings", src: "/screenshots/settings.png" },
+          ].map(({ label, src }) => (
+            <div
+              key={label}
+              className="flex-shrink-0 flex flex-col items-center"
+              style={{ scrollSnapAlign: "center", width: 240 }}
+            >
+              <div className="overflow-hidden rounded-[20px] border border-[#252525] bg-[#181818]">
+                <img
+                  src={src}
+                  alt={`Glow Manager — ${label}`}
+                  className="block"
+                  style={{ width: 240, height: "auto", maxHeight: 480, objectFit: "cover" }}
+                  loading="lazy"
+                />
+              </div>
+              <span className="mt-3 text-sm text-[#999]">{label}</span>
+            </div>
+          ))}
         </div>
       </section>
 
