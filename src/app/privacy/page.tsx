@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Glow Manager",
+  title: "Privacy Policy — Glow Manager: Smart Cash CRM",
 };
 
 const sections = [
