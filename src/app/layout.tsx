@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Glow Manager — CRM for Beauty Professionals",
+  title: "Glow Manager: Smart Cash CRM",
   description:
     "Glow Manager helps nail, lash, brow and barber professionals manage clients, appointments and income. All in one app.",
 };
